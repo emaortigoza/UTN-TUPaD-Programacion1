@@ -22,7 +22,7 @@ libro, elegido por el usuario, para registrar préstamos o devoluciones.
 - Préstamo -> Disminuye en 1 la cantidad de ejemplares del libro seleccionado, 
 si hay unidades suficientes. 
 - Devolución -> Aumenta en 1 la cantidad de ejemplares del libro seleccionado. 
-8. Salir → Termina la ejecución del programa.  """
+8. Salir → Termina la ejecución del programa.  """""
 
 opciones_menu = ["1. Ingresar títulos",
                  "2. Ingresar ejemplares disponibles",
