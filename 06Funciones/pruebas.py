@@ -1,14 +1,13 @@
-def suma (a, b):
-    return a + b
-def triple(x):
-    return x * 3
+def calcular_area_rectangulo(base, altura):
+     area = base * altura
+     return area
 
-resultado = triple(suma(2, 4))
+resultado = calcular_area_rectangulo(5, 3)
+print("El área del rectángulo es: " + str(resultado))
 
+def calcular_precio_final(precio, descuento=0):
+    precio_final = precio - (precio * descuento / 100)
+    return round(precio_final, 2)
+
+resultado = calcular_precio_final(120, 15)
 print(resultado)
-
-
-def cuadrado (x):
-    return x * x
-
-print (cuadrado(2))
