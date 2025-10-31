@@ -52,7 +52,6 @@ def mostrar_catalogo():
      
     print("-----------------------------------")
 
-
 def ingresar_titulos():
      
      cantidad = input("Ingrese la cantidad de titulos a ingresar: ").strip()
