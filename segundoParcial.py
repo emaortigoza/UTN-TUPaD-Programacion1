@@ -3,7 +3,7 @@ import os
 
 NOMBRE_ARCHIVO = "catalogo.csv"
 
-# ------------------ Funciones para manejar el archivo CSV ------------------
+
 def obtener_catalogo():
 
      catalogo = []
@@ -29,16 +29,17 @@ def guardar_catalogo(catalogo):
           escritor.writeheader()
           escritor.writerows(catalogo)
 
-# ------------------ Funciones de apoyo ------------------
+
 def existe_libro(titulo):
 
      catalogo = obtener_catalogo()
      for libro in catalogo:
-          if libro["TITULO"].lower() == titulo.strip().lower():
+          if libro["TITULO"].strip().lower() == titulo.strip().lower():
                return True
      return False
 
 def mostrar_catalogo():
+    
     catalogo = obtener_catalogo()
     if not catalogo:
         print("No hay libros en el catalogo.")
@@ -51,13 +52,12 @@ def mostrar_catalogo():
      
     print("-----------------------------------")
 
-# --------------- Funcionalidades del menú ----------------
 
 def ingresar_titulos():
      
      cantidad = input("Ingrese la cantidad de titulos a ingresar: ").strip()
      if not cantidad.isdigit() or int(cantidad) <= 0:
-          print("Cantidad inválida. Debe ser un número entero positivo.")
+          print("Cantidad inválida.")
           return
      
      cantidad = int(cantidad)
@@ -73,7 +73,7 @@ def ingresar_titulos():
                print("El título ya existe en el catálogo. No se puede agregar.")
                continue
 
-          ejemplares = input("Ingrese la cantidad de ejemplares disponibles: ").strip()
+          ejemplares = input("Ingrese la cantidad de ejemplares a ingresar: ").strip()
           if not ejemplares.isdigit() or int(ejemplares) < 0:
                print("Cantidad inválida. Se asignará 0.")
                ejemplares = 0
@@ -83,7 +83,7 @@ def ingresar_titulos():
           catalogo.append({"TITULO": titulo, "CANTIDAD": ejemplares})
 
      guardar_catalogo(catalogo)
-     print(f"'{titulo}' agregado exitosamente al catálogo.")
+     print(f"'{titulo}' con '{ejemplares}' ejemplares agregado exitosamente al catálogo.")
 
 def ingresar_ejemplares():
 
@@ -91,7 +91,7 @@ def ingresar_ejemplares():
      catalogo = obtener_catalogo()
 
      for libro in catalogo:
-          if libro["TITULO"].lower() == titulo.strip().lower():
+          if libro["TITULO"].strip().lower() == titulo.strip().lower():
                cantidad = input("Ingrese la cantidad de ejemplares a agregar: ").strip()
                if not cantidad.isdigit() or int(cantidad) <= 0:
                     print("Cantidad inválida")
@@ -103,16 +103,18 @@ def ingresar_ejemplares():
      print("El título no existe en el catálogo.")
 
 def consultar_disponibilidad():
+
      titulo = input("Ingrese el título del libro a consultar: ").strip()
      catalogo = obtener_catalogo()
 
      for libro in catalogo:
-          if libro["TITULO"].lower() == titulo.strip().lower():
+          if libro["TITULO"].strip().lower() == titulo.strip().lower():
                print(f"El libro '{libro['TITULO']}' tiene {libro['CANTIDAD']} ejemplares disponibles.")
                return
      print("El título no encontrado.")
 
 def listar_agotados():
+     
      catalogo = obtener_catalogo()
      agotados = [libro for libro in catalogo if libro["CANTIDAD"] == 0]
 
@@ -126,6 +128,7 @@ def listar_agotados():
      print("-------------------------")     
 
 def agregar_titulo():
+     
      titulo = input("Ingrese el título del nuevo libro: ").strip()
      if not titulo:
           print("El título no puede estar vacío.")
@@ -134,7 +137,7 @@ def agregar_titulo():
           print("El título ya existe en el catálogo.")
           return
      
-     cantidad = input("Ingrese la cantidad de ejemplares disponibles: ").strip()
+     cantidad = input("Ingrese la cantidad de ejemplares a agregar: ").strip()
      if not cantidad.isdigit() or int(cantidad) < 0:
           print("Cantidad inválida. Se asignará 0.")
           cantidad = 0
@@ -147,6 +150,7 @@ def agregar_titulo():
      print(f"'{titulo}' agregado exitosamente al catálogo.")
 
 def actualizar_ejemplares():
+
      titulo = input("Ingrese el título del libro a actualizar: ").strip()
      catalogo = obtener_catalogo()
 
@@ -169,7 +173,7 @@ def actualizar_ejemplares():
                return
      print("El título no existe en el catálogo.")
 
-# ------------------ Menú principal ------------------
+
 
 def mostrar_menu():
      while True:
